@@ -2,4 +2,19 @@
     <string name="app_name">GeoQuiz2</string>
     <string name="true_button_text">True</string>
     <string name="false_button_text">False</string>
+    <string name="previous_button_text">Pre</string>
+    <string name="next_button_text">Next</string>
+
+    <string-array name="questions_text">
+        <item>The sun goes around the earth?</item>
+        <item>Munich is the capital of Germany?</item>
+        <item>Saigon is the biggest city in Vietnam</item>
+    </string-array>
+
+    <integer-array name="answers_array">
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+
 </resources>
