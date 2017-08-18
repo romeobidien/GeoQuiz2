@@ -4,15 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
+    private static final String CURRENT_INDEX = "Current index";
+
     private TextView mQuestionTextView;
     private Button mTrueButton;
     private Button mFalseButton;
-    private Button mPrevButton;
-    private Button mNextButton;
+    private ImageButton mPrevButton;
+    private ImageButton mNextButton;
 
     private Question[] mQuestionBank;
     private int mCurrentIndex = 0;
@@ -22,13 +25,18 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(CURRENT_INDEX, 0);
+        }
+
         initQuestions();
+
 
         mQuestionTextView = (TextView) findViewById(R.id.question_textView);
         mTrueButton = (Button) findViewById(R.id.true_button);
         mFalseButton = (Button) findViewById(R.id.false_button);
-        mPrevButton = (Button) findViewById(R.id.previous_button);
-        mNextButton = (Button) findViewById(R.id.next_button);
+        mPrevButton = (ImageButton) findViewById(R.id.previous_button);
+        mNextButton = (ImageButton) findViewById(R.id.next_button);
 
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +77,12 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         showQuestion();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CURRENT_INDEX, mCurrentIndex);
     }
 
     private void initQuestions() {
